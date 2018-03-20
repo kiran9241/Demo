@@ -1,0 +1,117 @@
+<!-- <h3>Coach List</h3>
+<ol>
+    <li *ngFor="let coach of coaches">{{coach.firstname}} {{coach.lastname}}</li>
+</ol>
+<h3>Student List</h3>
+<ol>
+    <li *ngFor="let student of students">{{student.firstname}} {{student.lastname}}</li>
+</ol>
+ -->
+
+<br/>
+
+
+<div class="container text-left">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-align-justify"></i> Coaches
+            </div>
+            <div class="card-block">
+                <!-- <div class="row mb-1"> -->
+                <!-- <div class="col-md-4 offset-md-8" style="margin-bottom: 10px">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-search"></i>
+                        </span>
+                        </div>
+                    </div> -->
+                <!-- <div class="col-md-4 offset-md-8" style="margin-bottom: 10px">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-search"></i>
+                        </span>
+                            <input type="text" class="form-control" [(ngModel)]="filterQuery" placeholder="Search by name" />
+                        </div>
+                    </div> -->
+                <!-- </div> -->
+                <table class="table table-bordered " [mfData]="coaches | dataFilterbyvehicle : filterQuery|dataFilterbyId : filterId|dataFilterbylastname:filterlastname" #mf="mfDataTable" [mfRowsOnPage]="5">
+                    <thead>
+
+                        <tr style="background-color:#3D1F61;color:white;">
+                            <th>Action</th>
+                            <th>
+                                <mfDefaultSorter by="firstname">First Name</mfDefaultSorter>
+                            </th>
+                            <th>
+                                <mfDefaultSorter by="lastname">Last Name</mfDefaultSorter>
+                            </th>
+                            <th>
+                                <mfDefaultSorter by="username">User Name</mfDefaultSorter>
+                            </th>
+                            <th>
+                                <mfDefaultSorter by="uuid">uuid</mfDefaultSorter>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="text" class="form-control" [(ngModel)]="filterQuery" placeholder="Search by name" />
+
+                            </td>
+                            <td> <input type="text" class="form-control" [(ngModel)]="filterlastname" placeholder="Search by Lastname" />
+                            </td>
+                            <td> <input type="text" class="form-control" [(ngModel)]="filterId" placeholder="Search by username" />
+                            </td>
+
+
+                            <td></td>
+
+                        </tr>
+                        <!-- <tr *ngFor="let r of rules; let i = index" (click)="setClickedRow(r)" [class.active]="i == selectedRow"> -->
+                        <tr *ngFor="let c of mf.data; let i = index" [class.active]="i == selectedRow">
+                            <!-- <td>{{((mf.activePage + 1) * mf.rowsOnPage + i + 1)-10}}</td> -->
+                            <td>
+
+                                <button class="btn btn-sm btn-success" style="margin-right: 07px;margin-top: 07px"><i class="fa fa-eye"></i>
+                                </button>
+
+
+                                <button class="btn btn-sm btn-danger" style="margin-right: 07px;margin-top: 07px">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                                <button ng-click="editUser()" class="btn btn-sm btn-primary " style="margin-top: 07px"><i class="fa fa-edit"></i>
+                                </button>
+
+
+                            </td>
+                            <td> {{c.firstname}}</td>
+                            <!-- <td>{{r?.createDate | date:'d/M/yyyy, h:mm a'}}</td> -->
+                            <td>{{c.lastname}}</td>
+
+                            <td>{{c.username}}</td>
+                            <td>{{c.uuid}}</td>
+
+                        </tr>
+
+                        <tr>
+                            <td style="border: 0px solid black;"></td>
+                            <td style="border: 0px solid black;"></td>
+                            <td style="border: 0px solid black;"></td>
+
+                            <td style="border: 0px solid black;">
+
+
+                                <mfBootstrapPaginator [rowsOnPageSet]="[5,50,100]">
+                                </mfBootstrapPaginator>
+                            </td>
+
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
